@@ -1,12 +1,11 @@
 from flask import Flask, request
-from flask_restful import Resource, Api
 from json import dumps
 import os
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 from flask import Flask, render_template, request, session, redirect, json, jsonify
 from flask_session import Session
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -23,9 +22,10 @@ db = scoped_session(sessionmaker(autocommit=False,
 def helloWorld():
   return "Hello, cross-origin-world!"
 
-@api.resource('/lists')
-def fooo:
-    olors = db.execute("SELECT * FROM colors").fetchall()
+@app.route('/lists')
+@cross_origin()
+def fooo():
+    colors = db.execute("SELECT * FROM colors").fetchall()
     ints = []
     for color in colors:
         ints.append({
