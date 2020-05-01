@@ -10,6 +10,10 @@ engine = create_engine('postgres://awkfjeofiltqzf:71ea0e43dd739b4655198785ffd56a
 db = scoped_session(sessionmaker(autocommit=False,
                                          autoflush=False,
                                          bind=engine))
+@app.route("/colors")
+def index():
+    return "Hello world"
+
 
 @app.route("/colors")
 def colors():
