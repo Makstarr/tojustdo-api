@@ -9,7 +9,6 @@ from flask_session import Session
 from flask_cors import CORS
 
 app = Flask(__name__)
-api = Api(app)
 cors = CORS(app)
 
 print("DATABASE_URL")
@@ -25,18 +24,15 @@ def helloWorld():
   return "Hello, cross-origin-world!"
 
 @api.resource('/lists')
-class Foo(Resource):
-    def get(self):
+def fooo:
+    olors = db.execute("SELECT * FROM colors").fetchall()
+    ints = []
+    for color in colors:
+        ints.append({
+            "id": color.id,
+            "name": color.color_name})
 
-        colors = db.execute("SELECT * FROM colors").fetchall()
-
-        ints = []
-        for color in colors:
-            ints.append({
-                "id": color.id,
-                "name": color.color_name})
-
-        return jsonify(ints)
+    return jsonify(ints)
 
 if __name__ == '__main__':
     app.run(debug = true)
