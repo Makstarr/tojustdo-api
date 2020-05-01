@@ -12,7 +12,7 @@ db = scoped_session(sessionmaker(autocommit=False,
                                          bind=engine))
 @app.route("/")
 def index():
-    return "Hello world"
+     return redirect("/colors", code=302)
 
 
 @app.route("/colors")
