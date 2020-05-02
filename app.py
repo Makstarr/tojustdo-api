@@ -38,7 +38,7 @@ def colors():
 @cross_origin()
 def lists():
     listsId = db.execute("SELECT * FROM lists JOIN colors ON colors.id=lists.color_id ORDER BY list_id ASC;").fetchall()
-    tasks = db.execute("SELECT * FROM tasks").fetchall()
+    tasks = db.execute("SELECT * FROM tasks ORDER BY id ASC;").fetchall()
 
     lis = []
     print(listsId[0].id)
